@@ -120,46 +120,68 @@ def do_experiments(start, end, step_num):
 
     # Implement: Plot beta0
     plt.subplot(3, 3, 1)
+    plt.plot(shift_distances, beta0_list, marker='o', label='Beta0')
     plt.title("Shift Distance vs Beta0")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta0")
+    plt.grid(True)
+    plt.legend()
 
     # Implement: Plot beta1
     plt.subplot(3, 3, 2)
+    plt.plot(shift_distances, beta1_list, marker='o', label='Beta1 (Coefficient for x1)')
     plt.title("Shift Distance vs Beta1 (Coefficient for x1)")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta1")
+    plt.grid(True)
+    plt.legend()
 
     # Implement: Plot beta2
     plt.subplot(3, 3, 3)
+    plt.plot(shift_distances, beta2_list, marker='o', label='Beta2 (Coefficient for x2)')
     plt.title("Shift Distance vs Beta2 (Coefficient for x2)")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta2")
+    plt.grid(True)
+    plt.legend()
 
     # Implement: Plot beta1 / beta2 (Slope)
     plt.subplot(3, 3, 4)
+    slope_ratios = [b1 / b2 for b1, b2 in zip(beta1_list, beta2_list)]
+    plt.plot(shift_distances, slope_ratios, marker='o', label='Slope (Beta1 / Beta2)')
     plt.title("Shift Distance vs Beta1 / Beta2 (Slope)")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta1 / Beta2")
-    plt.ylim(-2, 0)
+    plt.grid(True)
+    plt.legend()
 
     # Implement: Plot beta0 / beta2 (Intercept ratio)
     plt.subplot(3, 3, 5)
+    intercept_ratios = [b0 / b2 for b0, b2 in zip(beta0_list, beta2_list)]
+    plt.plot(shift_distances, intercept_ratios, marker='o', label='Intercept Ratio (Beta0 / Beta2)')
     plt.title("Shift Distance vs Beta0 / Beta2 (Intercept Ratio)")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta0 / Beta2")
+    plt.grid(True)
+    plt.legend()
 
     # Plot logistic loss
     plt.subplot(3, 3, 6)
+    plt.plot(shift_distances, loss_list, marker='o', label='Logistic Loss')
     plt.title("Shift Distance vs Logistic Loss")
     plt.xlabel("Shift Distance")
     plt.ylabel("Logistic Loss")
+    plt.grid(True)
+    plt.legend()
 
     # Implement: Plot margin width
     plt.subplot(3, 3, 7)
+    plt.plot(shift_distances, margin_widths, marker='o', label='Margin Width')
     plt.title("Shift Distance vs Margin Width")
     plt.xlabel("Shift Distance")
     plt.ylabel("Margin Width")
+    plt.grid(True)
+    plt.legend()
 
     plt.tight_layout()
     plt.savefig(f"{result_dir}/parameters_vs_shift_distance.png")
